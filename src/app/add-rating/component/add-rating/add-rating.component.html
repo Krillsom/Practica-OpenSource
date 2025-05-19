@@ -1,0 +1,38 @@
+<form (ngSubmit)="rateEvent()" #form="ngForm">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Ticket Identifier</mat-label>
+    <input matInput 
+           type="text" 
+           [(ngModel)]="ticketIdentifier" 
+           name="ticketIdentifier" 
+           required 
+           #ticketId="ngModel" />
+    <mat-error *ngIf="ticketId.invalid && ticketId.touched">
+      Ticket Identifier is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Rating</mat-label>
+    <input matInput 
+           type="number" 
+           [(ngModel)]="rating" 
+           name="rating" 
+           required 
+           min="1" 
+           max="5" 
+           #ratingInput="ngModel" />
+    <mat-error *ngIf="ratingInput.invalid && ratingInput.touched">
+      Rating must be between 1 and 5
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button 
+          color="primary" 
+          type="submit" 
+          [disabled]="form.invalid">
+    Rate Event
+  </button>
+</form>
+
+<p style="margin-top: 1rem;">{{ message }}</p>
